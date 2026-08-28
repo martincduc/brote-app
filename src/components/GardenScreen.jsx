@@ -90,7 +90,20 @@ export default function GardenScreen({ habits, theme, themeKey, night, pulse, wa
           })}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', alignItems: 'end', padding: '18px 18px 0', gap: 2 }}>
+        <div className="garden-bed" aria-hidden="true">
+          <div className="garden-bed-back" />
+          <div className="garden-bed-front" />
+          <div className="grass-blades">
+            {Array.from({ length: 18 }, (_, index) => <span key={index} style={{ left: `${index * 6 - 2}%`, height: `${8 + (index % 4) * 3}px`, transform: `rotate(${index % 2 ? 18 : -18}deg)` }} />)}
+          </div>
+          <span className="garden-pebble pebble-one" />
+          <span className="garden-pebble pebble-two" />
+          <span className="garden-pebble pebble-three" />
+          <span className="garden-sprout sprout-one" />
+          <span className="garden-sprout sprout-two" />
+        </div>
+
+        <div className="plant-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', alignItems: 'end', padding: '18px 18px 0', gap: 2 }}>
           {habits.map((h, i) => (
             <Plant key={h.id} habit={h} index={i} theme={theme} themeKey={themeKey}
                    night={night} pulsing={pulse === h.id} onWater={water} />
